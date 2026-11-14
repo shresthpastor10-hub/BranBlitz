@@ -5,112 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BranBlitz</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+  <body>
+  <nav id="topNav" style="text-align:right; padding:12px 24px;">
+    <a href="auth.html" id="navLoginLink" style="color:white;">Login</a>
+  </nav>
   <!-- Landing page -->
-  <div id="landingScreen" >
-    <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#FFB703;">Blitz</span></h1>
-      <h2 style="color:white">How to Play</h2>
-      <ul class="box1">
-        <li>Choose one subject: Physics, Chemistry, Mathematics or Biology.</li>
-        <li>Choose Bot Mode and play against StudyBot.</li>
-        <li>A match has 5 questions. Each question has a 30 second timer.</li>
-        <li>You and StudyBot get one attempt per question.</li>
-        <li>Correct answer: +3 for you, -3 for your opponent (unless they already lost 3 on this question).</li>
-        <li>Wrong answer: -3 for you and you are frozen. Your opponent can still answer.</li>
-        <li>Both wrong: both get -3. Nobody answers in 30 seconds: both get 0.</li>
-        <li>One wrong and one silent: -3 and 0.</li>
-        <li>After 5 questions the higher score wins. Trophies change by 4 per point of difference (maximum 30).</li>
-        <li>The winner gains trophies, the loser loses the same amount, a draw changes nothing. Trophies can go below 0.</li>
-      </ul>
-    </div>
-     <p style="text-align:center">Start</a></p>
-
-<!-- New Row: Sticker + Side Quote (Placed strictly below the text) -->
-  <div class="sticker-quote-row">
-    <div class="sticker-box">
-      <img src="stick1.png" alt="Brain gaining focus" class="focus-sticker">
-      </div>
-
-      <div class="quote-box">
-      <h2 class="quote-heading">YOUR BRAIN’S DAILY ARENA.</h2>
-      <blockquote class="side-quote">
-      "Race the clock, beat your rival, and climb the ranks."
-    </blockquote>
-    </div>
+  <div id="landingScreen">
+    <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></h1>
+    <h2 style="color:white">How to Play</h2>
+    <ul class="box1">
+      <li>Choose one subject: Physics, Chemistry, Mathematics or Biology.</li>
+      <li>Choose Bot Mode and play against StudyBot.</li>
+      <li>A match has 5 questions. Each question has a 30 second timer.</li>
+      <li>You and StudyBot get one attempt per question.</li>
+      <li>Correct answer: +3 for you, -3 for your opponent (unless they already lost 3 on this question).</li>
+      <li>Wrong answer: -3 for you and you are frozen. Your opponent can still answer.</li>
+      <li>Both wrong: both get -3. Nobody answers in 30 seconds: both get 0.</li>
+      <li>One wrong and one silent: -3 and 0.</li>
+      <li>After 5 questions the higher score wins. Trophies change by 4 per point of difference (maximum 30).</li>
+      <li>The winner gains trophies, the loser loses the same amount, a draw changes nothing. Trophies can go below 0.</li>
+    </ul>
   </div>
-  <div class="sticker-quote-row">
-    <div class="sticker-box">
-      <img src="stick2.png" alt="Brain gaining focus" class="focus-sticker">
-      </div>
 
+  <!-- Wrapped so auth.js can hide landing sections after login -->
+  <div id="landingExtras">
+    <p style="text-align:center"><a href="auth.html" class="button" id="startBtn">Start</a></p>
+
+    <!-- New Row: Sticker + Side Quote (Placed strictly below the text) -->
+    <div class="sticker-quote-row">
+      <div class="sticker-box">
+        <img src="stick1.png" alt="Brain gaining focus" class="focus-sticker">
+      </div>
       <div class="quote-box">
-      <h2 class="quote-heading">GRIND SMARTER, NOT LONGER</h2>
-      <blockquote class="side-quote">
-      "Every quick match trains your recall under real pressure."
-    </blockquote>
+        <h2 class="quote-heading">YOUR BRAIN’S DAILY ARENA.</h2>
+        <blockquote class="side-quote">
+          "Race the clock, beat your rival, and climb the ranks."
+        </blockquote>
+      </div>
     </div>
+
+    <div class="sticker-quote-row">
+      <div class="sticker-box">
+        <img src="stick2.png" alt="Brain gaining focus" class="focus-sticker">
+      </div>
+      <div class="quote-box">
+        <h2 class="quote-heading">GRIND SMARTER, NOT LONGER</h2>
+        <blockquote class="side-quote">
+          "Every quick match trains your recall under real pressure."
+        </blockquote>
+      </div>
     </div>
+
     <!-- Interactive CTA and Brand Footer Row -->
-  <section class="game-callout-footer">
+    <section class="game-callout-footer">
+      <!-- Left: 2x2 Social Grid -->
+      <div class="social-container">
+        <a href="#" class="social-card">
+          <img src="stick6.png" alt="Discord" class="center-img">
+        </a>
+        <a href="#" class="social-card">
+          <img src="stick5.png" alt="X" class="center-img">
+        </a>
+        <a href="#" class="social-card">
+          <img src="stick7.png" alt="Instagram" class="center-img">
+        </a>
+        <a href="#" class="social-card">
+          <img src="stick4.png" alt="Linkdein" class="center-img">
+        </a>
+      </div>
 
-    <!-- Left: 2x2 Social Grid -->
-    
-<div class="social-container">
-
-  <a href="#" class="social-card">
-    <img src="stick6.png" alt="Discord" class="center-img">
-  </a>
-
-  <a href="#" class="social-card">
-    <img src="stick5.png" alt="X"  class="center-img">
-  </a>
-
-  <a href="#" class="social-card">
-    <img src="stick7.png" alt="Instagram" class="center-img">
-  </a>
-
-  <a href="#" class="social-card">
-    <img src="stick4.png" alt="Linkdein" class="center-img">
-  </a>
-
-</div>
-
-    <!-- Right: Lime Green CTA Card with Headline & Sticker Slot -->
-    <div class="action-cta-card">
-      <div class="cta-inner-wrapper">
-        <div class="cta-typography-pane">
-          <h2 class="cta-headline">
-            LET'S SEE WHAT<br>
-            YOUR BRAIN CAN DO
-          </h2>
-        </div>
-
-        <!-- Add your sticker image here -->
-        <div class="cta-illustration-pane">
-          <img src="stick3.png" alt="Brain Sticker" class="cta-sticker-img" style="width: auto; height: auto;">
+      <!-- Right: Lime Green CTA Card with Headline & Sticker Slot -->
+      <div class="action-cta-card">
+        <div class="cta-inner-wrapper">
+          <div class="cta-typography-pane">
+            <h2 class="cta-headline">
+              LET'S SEE WHAT<br>
+              YOUR BRAIN CAN DO
+            </h2>
+          </div>
+          <div class="cta-illustration-pane">
+            <img src="stick3.png" alt="Brain Sticker" class="cta-sticker-img" style="width: auto; height: auto;">
+          </div>
         </div>
       </div>
-    </div>
+
+      <!-- Rounded Brand Footer -->
+      <footer class="bottom-site-footer">
+        <div class="footer-inner">
+          <div class="brand-logotype">
+            <span class="logo-mark">o|o</span>
+            <span class="logo-name">BRANBLITZ</span>
+          </div>
+          <nav class="footer-links" aria-label="Footer Navigation">
+            <a href="#landingScreen" class="footer-link-item">BACK TO TOP <span class="arrow-glyph">&#8599;</span></a>
+            <a href="#" class="footer-link-item">TERMS OF SERVICE <span class="arrow-glyph">&#8599;</span></a>
+            <a href="#" class="footer-link-item">PRIVACY POLICY <span class="arrow-glyph">&#8599;</span></a>
+          </nav>
+        </div>
+      </footer>
+    </section>
   </div>
-
-  <!-- Rounded Brand Footer -->
-  <footer class="bottom-site-footer">
-    <div class="footer-inner">
-      <div class="brand-logotype">
-        <span class="logo-mark">o|o</span>
-        <span class="logo-name">BRANBLITZ</span>
-      </div>
-      <nav class="footer-links" aria-label="Footer Navigation">
-        <a href="#landingScreen" class="footer-link-item">BACK TO TOP <span class="arrow-glyph">&#8599;</span></a>
-        <a href="#" class="footer-link-item">TERMS OF SERVICE <span class="arrow-glyph">&#8599;</span></a>
-        <a href="#" class="footer-link-item">PRIVACY POLICY <span class="arrow-glyph">&#8599;</span></a>
-      </nav>
-    </div>
-  </footer>
-</section>
-
-  
 
   <!-- Homepage -->
   <div id="homeScreen" class="hidden">
@@ -179,6 +176,7 @@
     <button id="backHomeButton">Back to Homepage</button>
   </div>
 
-  <script src="app.js"></script> <!--this will be added later-->
+  <script src="auth.js"></script>
+  <!--<script src="app.js"></script>-->
 </body>
 </html>
