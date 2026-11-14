@@ -122,10 +122,77 @@ input { display: block; margin: 6px 0; padding: 6px; width: 260px; }
   line-height: 1 ;
   text-align: center;
 }
-.button3 { padding: 8px 14px; margin: 4px; border: 1px solid #D9480F; background: #D9480F; cursor: pointer; border-radius: 8px; height: 80px; width: 90px;}
-/* subjects on one horizontal line */
-#subjectRow { display: flex; flex-wrap: wrap; }
 
+/* Full-width row spanning between the left and right ambient margins */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 20%;
+  margin: 1.25rem 0 2.5rem;
+  box-sizing: border-box;
+}
+
+/* Large, bold subject tiles */
+.subject-grid button,
+.subject-btn {
+  width: 100%;
+  min-height: 125px;
+  padding: 1.5rem 1rem;
+  border-radius: 18px;
+  background-color: #D9480F;
+  color: #ffffff;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  /* 2D arcade border & depth matching your site theme */
+  border: 2px solid #FFB703;
+  box-shadow: 0 6px 0 #091122, 0 12px 20px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover & Active Selection Effects */
+.subject-grid button:hover,
+.subject-btn:hover {
+  background-color: #e8551a;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 0 #091122, 0 16px 24px rgba(217, 72, 15, 0.35);
+}
+
+.subject-grid button:active,
+.subject-btn:active,
+.subject-btn.active,
+.subject-btn.selected {
+  background-color: #FFB703;
+  color: #091122;
+  border-color: #ffffff;
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #091122;
+}
+
+/* Switch to a 2x2 grid on tablets/mobile so text never gets cramped */
+@media (max-width: 900px) {
+  .subject-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .subject-grid button,
+  .subject-btn {
+    min-height: 95px;
+  }
+}
+/* subjects on one horizontal line */
+.subject-btn  { display: flex; flex-wrap: wrap; }
 /* quiz screen */
 #scoreBoard { display: flex; justify-content: space-between; }
 .dot { display: inline-block; width: 16px; height: 16px; border: 1px solid #333; border-radius: 50%; margin: 2px; background: white; }
