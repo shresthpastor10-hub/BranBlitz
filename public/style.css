@@ -9,20 +9,13 @@ body { background-color:#121212;font-family: Arial, sans-serif; max-width: 700px
 
 button { padding: 8px 14px; margin: 4px; border: 1px solid #D9480F; background: #D9480F; cursor: pointer; border-radius: 8px;}
 button:hover{ background-color: #ffaa33; color:cornsilk;}
-glowtext {
-  color: #ffaa33;
-  text-shadow: 
-    0 0 5px #ff5f1f,
-    0 0 10px #ff5f1f,
-    0 0 20px #ff5f1f,
-    0 0 40px #ff4b11;
-}
+.button2 { padding: 8px 14px; margin: 4px; border: 1px solid #D9480F; background: #FFB703; cursor: pointer; border-radius: 8px;}
 
 button.selected { background: #333; color: white; }
 input { display: block; margin: 6px 0; padding: 6px; width: 260px; }
 /* landing page about */
 
-.box1 {
+.box3 {
   width: auto;
   border: 8px solid rgb(25, 7, 46);
   padding: 50px;
@@ -47,11 +40,89 @@ input { display: block; margin: 6px 0; padding: 6px; width: 260px; }
 .box1:hover{background-color: #2c56dd; color:cornsilk;
     animation: myAnimation 5s ease;
 }
+#rules,
+.box1 {
+  color: #f1f5f9;
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  border: 2px solid #FFB703;
+  animation: rulesPulse 6s ease-in-out infinite;
+}
+
+#rules li,
+.box1 li {
+  line-height: 1.65;
+  margin-bottom: 0.45rem;
+}
+
+
+@keyframes rulesPulse {
+  0%, 100% {
+    background-color: rgba(20, 33, 61, 0.85); /* Deep Navy */
+    border-color: #FFB703;                    /* Amber Yellow */
+    box-shadow: 0 0 22px rgba(255, 183, 3, 0.22);
+  }
+  50% {
+    background-color: rgba(42, 18, 12, 0.88); /* Dark Burnt Umber */
+    border-color: #D9480F;                    /* Burnt Orange */
+    box-shadow: 0 0 28px rgba(217, 72, 15, 0.35);
+  }
+}
 /* hamburger menu */
 #topBar { position: relative; }
 #menu { position: absolute; top: 40px; left: 0; background: white; border: 1px solid #333; }
 #menu button { display: block; width: 100%; margin: 0; border: none; text-align: left; }
+/* Make sure html/body prevents any horizontal scrollbar from 100vw */
+.box2 {
+  /* Full screen width edge-to-edge breakout */
+  height: 70px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
 
+  /* Burnt Orange background & matching border */
+  background-color: #D9480F;
+  border: 2px solid #FFB703;
+  /* Clean vertical alignment for the menu button inside */
+}
+
+/* Optional: Make the menu button inside stand out against the orange bar */
+.box2 {
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  box-sizing: border-box;
+
+  background-color: #121212;
+  padding: 0.85rem 2rem;
+
+  /* Centers BranBlitz across the full banner width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pins the menu button cleanly on the left without pushing BranBlitz off-center */
+.box2 #menuButton {
+  position: absolute;
+  left: 1.5rem ;
+  top: 50%;
+  transform: translateY(-50%) ;
+  background-color: #FFB703;
+  color: #000000;
+}
+/* Keeps BranBlitz centered and properly aligned vertically */
+/* optional*/
+.box2 .hero-title {
+  margin: 0 ;
+  line-height: 1 ;
+  text-align: center;
+}
+.button3 { padding: 8px 14px; margin: 4px; border: 1px solid #D9480F; background: #D9480F; cursor: pointer; border-radius: 8px; height: 80px; width: 90px;}
 /* subjects on one horizontal line */
 #subjectRow { display: flex; flex-wrap: wrap; }
 

@@ -5,12 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BranBlitz</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="side.css">
 </head>
 <body>
+  <!-- Ambient Side Spotlights & Faint Floating Margin Symbols -->
+<div class="ambient-margins" aria-hidden="true">
+  <!-- Left Margin Symbols -->
+  <span class="float-symbol sym-1">π</span>
+  <span class="float-symbol sym-2">Δ</span>
+  <span class="float-symbol sym-3">∑</span>
+  <span class="float-symbol sym-4">
+    <!-- Minimal Atom SVG -->
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="32" cy="32" r="4" fill="currentColor"/>
+      <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(30 32 32)"/>
+      <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(-30 32 32)"/>
+      <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(90 32 32)"/>
+    </svg>
+  </span>
+
+  <!-- Right Margin Symbols -->
+  <span class="float-symbol sym-5">∞</span>
+  <span class="float-symbol sym-6">√x</span>
+  <span class="float-symbol sym-7">Ω</span>
+  <span class="float-symbol sym-8">
+    <!-- Minimal Lightning Bolt SVG -->
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round">
+      <path d="M36 6L14 36h16l-4 22 24-30H34l2-22z"/>
+    </svg>
+  </span>
+</div>
+
   <!-- Landing page -->
   <div id="landingScreen" >
-    <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#FFB703;">Blitz</span></h1>
-      <h2 style="color:white">How to Play</h2>
+    <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></h1>
+    <p style="text-align: right;"><a href="auth.html"  class="button2" style="text-align: center;">LOGIN</a></p>
+      <h2 style="color:white; text-align: center;" >How to <span style="color: #FFB703;"> Play</span></h2>
       <ul class="box1">
         <li>Choose one subject: Physics, Chemistry, Mathematics or Biology.</li>
         <li>Choose Bot Mode and play against StudyBot.</li>
@@ -34,7 +64,7 @@
 
       <div class="quote-box">
       <h2 class="quote-heading">YOUR BRAIN’S DAILY ARENA.</h2>
-      <blockquote class="side-quote">
+      <blockquote class="side-quote" style="color: #D9480F;" >
       "Race the clock, beat your rival, and climb the ranks."
     </blockquote>
     </div>
@@ -46,9 +76,9 @@
 
       <div class="quote-box">
       <h2 class="quote-heading">GRIND SMARTER, NOT LONGER</h2>
-      <blockquote class="side-quote">
+      <quote class="side-quote" style="color: #D9480F;" >
       "Every quick match trains your recall under real pressure."
-    </blockquote>
+    </quote>
     </div>
     </div>
     <!-- Interactive CTA and Brand Footer Row -->
@@ -110,19 +140,27 @@
   </footer>
 </section>
 
-  
+      <!-- Hamburger menu (only visible after login) -->
+  <div id="topBar" class="menu">
+    <p class="box2"><button id="menuButton"  class="button">☰</button><strong class="hero-title" style="text-align:center;color:white;font-size: 50px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></strong></p>
+    <div id="menu" class="hidden" >
+      <button id="menuProfile">Profile</button>
+      <button id="menuHow">How to Play</button>
+      <button id="menuLogout">Logout</button>
+    </div>
+  </div>
 
   <!-- Homepage -->
-  <div id="homeScreen" class="hidden">
-    <h2>Trophies: <span id="trophyCount">0</span></h2>
-    <h3>Choose a subject</h3>
-    <div id="subjectRow">
+  <div id="homeScreen">
+    <h2 style="color: #FFD700; text-align: right; margin-right: -80px;" >Trophies &#127942 : <span id="trophyCount">0</span></h2>
+    <h1 style="color: aliceblue;">Choose a <span style="color: #FFB703;">subject</span></h1>
+    <div id="subjectRow" class="subjectRow">
       <button class="subjectButton" data-subject="Physics">Physics</button>
       <button class="subjectButton" data-subject="Chemistry">Chemistry</button>
       <button class="subjectButton" data-subject="Mathematics">Mathematics</button>
       <button class="subjectButton" data-subject="Biology">Biology</button>
     </div>
-    <h3>Choose a mode</h3>
+    <h3 style="color: darkgray;">Choose a mode</h3>
     <button id="botModeButton">Bot Mode (against StudyBot)</button>
     <p><button id="startButton">Start Match</button></p>
     <p id="homeMessage" class="error"></p>
