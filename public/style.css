@@ -1,5 +1,5 @@
 /* style.css - plain and flat on purpose */
-body { font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; padding: 20px; }
+body { background-color:#121212;font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; padding: 20px; }
 .hidden { display: none; }
 .error { color: red; }
 .blue { color: blue; }
