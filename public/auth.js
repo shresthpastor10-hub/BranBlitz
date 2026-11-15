@@ -87,9 +87,18 @@ function showUserInNav(name) {
     const link = document.getElementById('navLoginLink');
     if (!link) return;
     if (!link.dataset.loginText) link.dataset.loginText = link.textContent; // remember original "LOGIN" text
-    link.textContent = name;
+    link.textContent = 'SIGN OUT';
     link.setAttribute('href', '#');
-    link.onclick = (e) => e.preventDefault();
+    link.onclick = (e) => {
+        e.preventDefault();
+        logoutUser();
+    };
+}
+// This is for home page
+function showGreeting(name) {
+  const el = document.getElementById('greeting');
+  if (!el) return;
+  el.textContent = name ? 'Hey ' + name : 'Hey';
 }
 
 function showLoginInNav() {
@@ -142,6 +151,7 @@ async function initAuthOnLanding() {
     // Show saved name instantly, then confirm with Supabase
     const cachedName = sessionStorage.getItem('username');
     if (cachedName) showUserInNav(cachedName);
+    if (cachedName) showGreeting(cachedName);
 
     const { data: { session } } = await supabaseClient.auth.getSession();
     const user = session?.user;
