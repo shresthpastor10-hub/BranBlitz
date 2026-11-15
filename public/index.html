@@ -60,7 +60,7 @@
 
   <!-- Wrapped so auth.js can hide the rest of the landing page when the game starts -->
   <div id="landingExtras">
-    <p style="text-align:center"><a href="auth.html" class="button" id="startBtn">Start</a></p>
+    <p style="text-align:center"><a href="auth.html" id="startBtn">Start</a></p>
 
     <!-- Sticker + Side Quote rows (placed strictly below the text) -->
     <div class="sticker-quote-row">
@@ -157,6 +157,7 @@
 
   <!-- Homepage (hidden until Start is pressed while logged in) -->
   <div id="homeScreen" class="hidden">
+    <h2 id="greeting" style="color: #FFD700; text-align: left;">Hey, player!</h2>
     <h2 style="color: #FFD700; text-align: right; margin-right: -80px;">Trophies &#127942; : <span id="trophyCount">0</span></h2>
     <h1 style="color: aliceblue;">Choose a <span style="color: #FFB703;">subject</span></h1>
     <!-- Both class names kept so style.css (subject-grid/subject-btn) and app.js (subjectRow/subjectButton) keep working -->
