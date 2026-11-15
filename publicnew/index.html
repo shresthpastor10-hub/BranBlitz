@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BranBlitz</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="side.css">
+  <style>.hidden { display: none !important; }</style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- Ambient Side Spotlights & Faint Floating Margin Symbols -->
+  <div class="ambient-margins" aria-hidden="true">
+    <!-- Left Margin Symbols -->
+    <span class="float-symbol sym-1">π</span>
+    <span class="float-symbol sym-2">Δ</span>
+    <span class="float-symbol sym-3">∑</span>
+    <span class="float-symbol sym-4">
+      <!-- Minimal Atom SVG -->
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="32" cy="32" r="4" fill="currentColor"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(30 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(-30 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(90 32 32)"/>
+      </svg>
+    </span>
+
+    <!-- Right Margin Symbols -->
+    <span class="float-symbol sym-5">∞</span>
+    <span class="float-symbol sym-6">√x</span>
+    <span class="float-symbol sym-7">Ω</span>
+    <span class="float-symbol sym-8">
+      <!-- Minimal Lightning Bolt SVG -->
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round">
+        <path d="M36 6L14 36h16l-4 22 24-30H34l2-22z"/>
+      </svg>
+    </span>
+  </div>
+
+  <!-- Landing page -->
+  <div id="landingScreen">
+    <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></h1>
+    <!-- auth.js swaps this LOGIN text for the username after login -->
+    <p style="text-align: right;"><a href="auth.html" id="navLoginLink" class="button2" style="text-align: center;">LOGIN</a></p>
+    <h2 style="color:white; text-align: center;">How to <span style="color: #FFB703;"> Play?</span></h2>
+    <ul class="box1">
+      <li>Choose one subject: Physics, Chemistry, Mathematics or Biology.</li>
+      <li>Choose Bot Mode and play against StudyBot.</li>
+      <li>A match has 5 questions. Each question has a 30 second timer.</li>
+      <li>You and StudyBot get one attempt per question.</li>
+      <li>Correct answer: +3 for you, -3 for your opponent (unless they already lost 3 on this question).</li>
+      <li>Wrong answer: -3 for you and you are frozen. Your opponent can still answer.</li>
+      <li>Both wrong: both get -3. Nobody answers in 30 seconds: both get 0.</li>
+      <li>One wrong and one silent: -3 and 0.</li>
+      <li>After 5 questions the higher score wins. Trophies change by 4 per point of difference (maximum 30).</li>
+      <li>The winner gains trophies, the loser loses the same amount, a draw changes nothing. Trophies can go below 0.</li>
+    </ul>
+  </div>
+
+  <!-- Wrapped so auth.js can hide the rest of the landing page when the game starts -->
+  <div id="landingExtras">
+    <p style="text-align:center"><a href="auth.html" id="startBtn">Start</a></p>
+
+    <!-- Sticker + Side Quote rows (placed strictly below the text) -->
+    <div class="sticker-quote-row">
+      <div class="sticker-box">
+        <img src="stick1.png" alt="Brain gaining focus" class="focus-sticker">
+      </div>
+
+      <div class="quote-box">
+        <h2 class="quote-heading">YOUR BRAIN’S DAILY ARENA.</h2>
+        <blockquote class="side-quote" style="color: #D9480F;">
+          "Race the clock, beat your rival, and climb the ranks."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="sticker-quote-row">
+      <div class="sticker-box">
+        <img src="stick2.png" alt="Brain gaining focus" class="focus-sticker">
+      </div>
+
+      <div class="quote-box">
+        <h2 class="quote-heading">GRIND SMARTER, NOT LONGER</h2>
+        <blockquote class="side-quote" style="color: #D9480F;">
+          "Every quick match trains your recall under real pressure."
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- Interactive CTA and Brand Footer Row -->
+    <section class="game-callout-footer">
+
+      <!-- Left: 2x2 Social Grid -->
+      <div class="social-container">
+        <a href="#" class="social-card">
+          <img src="stick6.png" alt="Discord" class="center-img">
+        </a>
+
+        <a href="#" class="social-card">
+          <img src="stick5.png" alt="X" class="center-img">
+        </a>
+
+        <a href="#" class="social-card">
+          <img src="stick7.png" alt="Instagram" class="center-img">
+        </a>
+
+        <a href="#" class="social-card">
+          <img src="stick4.png" alt="Linkedin" class="center-img">
+        </a>
+      </div>
+
+      <!-- Right: Lime Green CTA Card with Headline & Sticker Slot -->
+      <div class="action-cta-card">
+        <div class="cta-inner-wrapper">
+          <div class="cta-typography-pane">
+            <h2 class="cta-headline">
+              LET'S SEE WHAT<br>
+              YOUR BRAIN CAN DO
+            </h2>
+          </div>
+
+          <!-- Add your sticker image here -->
+          <div class="cta-illustration-pane">
+            <img src="stick3.png" alt="Brain Sticker" class="cta-sticker-img" style="width: auto; height: auto;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Rounded Brand Footer -->
+      <footer class="bottom-site-footer">
+        <div class="footer-inner">
+          <div class="brand-logotype">
+            <span class="logo-mark">o|o</span>
+            <span class="logo-name">BRANBLITZ</span>
+          </div>
+          <nav class="footer-links" aria-label="Footer Navigation">
+            <a href="#landingScreen" class="footer-link-item">BACK TO TOP <span class="arrow-glyph">&#8599;</span></a>
+            <a href="#" class="footer-link-item">TERMS OF SERVICE <span class="arrow-glyph">&#8599;</span></a>
+            <a href="#" class="footer-link-item">PRIVACY POLICY <span class="arrow-glyph">&#8599;</span></a>
+          </nav>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+  <!-- Hamburger menu (hidden until the player presses Start while logged in) -->
+  <div id="topBar" class="menu hidden">
+    <p class="box2"><button id="menuButton" class="button">☰</button><strong class="hero-title" style="text-align:center;color:white;font-size: 50px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></strong></p>
+    <div id="menu" class="hidden">
+      <button id="menuProfile">Profile</button>
+      <button id="menuHow">How to Play</button>
+      <button id="menuLogout">Logout</button>
+    </div>
+  </div>
+
+  <!-- Homepage (hidden until Start is pressed while logged in) -->
+  <div id="homeScreen" class="hidden">
+    <h2 id="greeting" style="color: #FFD700; text-align: left;">Hey, player!</h2>
+    <h2 style="color: #FFD700; text-align: right; margin-right: -80px;">Trophies &#127942; : <span id="trophyCount">0</span></h2>
+    <h1 style="color: aliceblue;">Choose a <span style="color: #FFB703;">subject</span></h1>
+    <!-- Both class names kept so style.css (subject-grid/subject-btn) and app.js (subjectRow/subjectButton) keep working -->
+    <div id="subjectRow" class="subject-grid subjectRow">
+      <button class="subject-btn subjectButton" data-subject="Physics">Physics</button>
+      <button class="subject-btn subjectButton" data-subject="Chemistry">Chemistry</button>
+      <button class="subject-btn subjectButton" data-subject="Mathematics">Mathematics</button>
+      <button class="subject-btn subjectButton" data-subject="Biology">Biology</button>
+    </div>
+    <h3 style="color: darkgray;">Choose a mode</h3>
+    <button id="botModeButton" style="width: 200px; height: 50px;"><strong style="color: black; font-size: 15px;">Bot Mode (StudyBot)</strong></button>
+    <p><button id="startButton"><strong style="color: black;">Start Match</strong></button></p>
+    <p id="homeMessage" class="error"></p>
+  </div>
+
+  <!-- Profile -->
+  <div id="profileScreen" class="hidden">
+    <h2 style="color: #D9480F;">Profile</h2>
+    <p style="color: #FFB703;">Username: <b id="pUsername" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Current trophies: <b id="pTrophies" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Total quizzes played: <b id="pPlayed" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Quizzes won: <b id="pWon" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Quizzes lost: <b id="pLost" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Draws: <b id="pDraws" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Total correctly answered questions: <b id="pCorrect" style="color: darkgrey;"></b></p>
+    <button class="backButton">Back</button>
+  </div>
+
+  <!-- How to Play (filled by app.js from the rules above) -->
+  <div id="howScreen" class="hidden">
+    <div id="howBox"></div>
+    <button class="backButton">Back</button>
+  </div>
+
+  <!-- Quiz -->
+  <div id="quizScreen" class="hidden">
+    <div id="scoreBoard">
+      <div>
+        <b style="color:white;font-size:40px;">You : </b><span id="userScore" style="color:white;font-size:40px;">0</span>
+        <div id="userDots"></div>
+      </div>
+      <div class="center">
+        <b id="timeLeft" style="color:white;font-size:60px">30s</b>
+      </div>
+      <div class="right">
+        <b class="red" style="color:white;font-size:40px;">StudyBot : </b><span id="botScore" style="color:white;font-size:40px;">0</span>
+        <div id="botDots"></div>
+      </div>
+    </div>
+    <p style="color:white;">Question <span id="questionNumber" style="color:white;">1</span> of 5</p>
+    <h3 id="questionText"></h3>
+    <button class="optionButton" data-option="A"></button>
+    <button class="optionButton" data-option="B"></button>
+    <button class="optionButton" data-option="C"></button>
+    <button class="optionButton" data-option="D"></button>
+    <p id="quizMessage"></p>
+  </div>
+
+  <!-- Result -->
+  <div id="resultScreen" class="hidden">
+    <h2 id="resultBanner"></h2>
+    <p style="color: #FFD700;">Winner: <b id="resultWinner" style="color: #e87f55;"></b></p>
+    <p style="color: #FFD700;">Final score: <span id="resultScore" style="color: #e87f55;"></span></p>
+    <p style="color: #FFD700;">Trophies this match: <b id="resultChange" style="color: #e87f55;"></b></p>
+    <p style="color: #FFD700;">Total trophies: <b id="resultTrophies" style="color: #e87f55;"></b></p>
+    <button id="playAgainButton">Play New Match</button>
+    <button id="backHomeButton">Back to Homepage</button>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+// Initializing Supabase
+const SUPABASE_URL = 'https://dezledviflcsjkurtmiq.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_41xns9eV4rAt0Po73EnsQw_slVJKmDC';
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: {
+        storage: window.sessionStorage,
+        persistSession: true,
+        autoRefreshToken: true
+    }
+});
+
+// Global player identity for matchmaking & app.js
+let currentUsername = null;
+let currentUserId = null;
+
+// --- 1. SIGN-UP LOGIC (Saves chosen username to Supabase user_metadata) ---
+const signupForm = document.getElementById('signupForm');
+if (signupForm) {
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById('signupUsername').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const password = document.getElementById('passwordInput').value;
+        const confirmPassword = document.getElementById('confirmPasswordInput').value;
+
+        if (!username) {
+            alert('Please enter a username!');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+        const { data, error } = await supabaseClient.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    username: username // Stores the exact chosen username in Supabase
+                }
+            }
+        });
+
+        if (error) {
+            alert('Sign-up error: ' + error.message);
+        } else {
+            alert('Sign-up successful! You can now log in.');
+            if (typeof toggleAuth === 'function') {
+                toggleAuth('login');
+            }
+        }
+    });
+}
+
+// --- 2. LOGIN LOGIC ---
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            alert('Login error: ' + error.message);
+        } else {
+            // Save chosen username immediately on login
+            const chosenUsername = data.user.user_metadata?.username || data.user.email.split('@')[0];
+            sessionStorage.setItem('username', chosenUsername);
+            sessionStorage.setItem('userId', data.user.id);
+
+            window.location.href = 'index.html';
+        }
+    });
+}
+
+// --- 3. LANDING PAGE: show username, handle Start button ---
+function showUserInNav(name) {
+    const link = document.getElementById('navLoginLink');
+    if (!link) return;
+    if (!link.dataset.loginText) link.dataset.loginText = link.textContent; // remember original "LOGIN" text
+    link.textContent = 'SIGN OUT';
+    link.setAttribute('href', '#');
+    link.onclick = (e) => {
+        e.preventDefault();
+        logoutUser();
+    };
+}
+// This is for home page
+function showGreeting(name) {
+  const el = document.getElementById('greeting');
+  if (!el) return;
+  el.textContent = name ? 'Hey ' + name : 'Hey';
+}
+
+function showLoginInNav() {
+    const link = document.getElementById('navLoginLink');
+    if (!link) return;
+    link.textContent = link.dataset.loginText || 'Login';
+    link.setAttribute('href', 'auth.html');
+    link.onclick = null;
+}
+
+// Called when Start is clicked
+async function enterGame() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    if (!session) {
+        window.location.href = 'auth.html';   // not logged in -> login first
+        return;
+    }
+
+    document.getElementById('landingScreen')?.classList.add('hidden');
+    document.getElementById('landingExtras')?.classList.add('hidden');
+    document.getElementById('homeScreen')?.classList.remove('hidden');
+    document.getElementById('topBar')?.classList.remove('hidden');   // hamburger menu appears after Start
+    window.scrollTo(0, 0);
+}
+
+async function logoutUser() {
+    await supabaseClient.auth.signOut();
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userId');
+    window.location.href = 'index.html';
+}
+
+async function initAuthOnLanding() {
+    // Skip when on auth.html
+    if (loginForm || signupForm) return;
+
+    // Start button
+    const startBtn = document.getElementById('startBtn');
+    if (startBtn) {
+        startBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            enterGame();
+        });
+    }
+
+    // Logout button inside the hamburger menu
+    document.getElementById('menuLogout')?.addEventListener('click', logoutUser);
+
+    // Show saved name instantly, then confirm with Supabase
+    const cachedName = sessionStorage.getItem('username');
+    if (cachedName) showUserInNav(cachedName);
+    if (cachedName) showGreeting(cachedName);
+
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const user = session?.user;
+
+    if (!user) {
+        currentUsername = null;
+        currentUserId = null;
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('userId');
+        showLoginInNav();
+        return;
+    }
+
+    currentUsername = user.user_metadata?.username || user.email.split('@')[0];
+    currentUserId = user.id;
+    sessionStorage.setItem('username', currentUsername);
+    sessionStorage.setItem('userId', currentUserId);
+
+    showUserInNav(currentUsername);
+
+    // Fill username slots (used later inside the game)
+    ['pUsername', 'userName', 'homeUsername'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = currentUsername;
+    });
+
+    window.dispatchEvent(new CustomEvent('userReady', {
+        detail: { userId: currentUserId, username: currentUsername }
+    }));
+}
+
+initAuthOnLanding();
