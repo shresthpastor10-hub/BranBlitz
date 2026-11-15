@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Ambient Side Spotlights & Faint Floating Symbols
+   ========================================================================== */
+
+.ambient-margins {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* Never blocks clicks on buttons or inputs */
+  z-index: 0;
+  overflow: hidden;
+
+  /* Left Amber Spotlight + Right Burnt Orange Spotlight */
+  background:
+    radial-gradient(520px circle at 0% 35%, rgba(255, 183, 3, 0.14), transparent 70%),
+    radial-gradient(560px circle at 100% 65%, rgba(217, 72, 15, 0.18), transparent 70%),
+    radial-gradient(380px circle at 6% 85%, rgba(217, 72, 15, 0.1), transparent 70%),
+    radial-gradient(380px circle at 94% 20%, rgba(255, 183, 3, 0.1), transparent 70%);
+}
+
+/* Subtle vertical edge light beams */
+.ambient-margins::before,
+.ambient-margins::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  opacity: 0.35;
+}
+
+.ambient-margins::before {
+  left: 3.5%;
+  background: linear-gradient(to bottom, transparent, #FFB703, transparent);
+}
+
+.ambient-margins::after {
+  right: 3.5%;
+  background: linear-gradient(to bottom, transparent, #D9480F, transparent);
+}
+
+/* Base Floating Symbol Styling */
+.float-symbol {
+  position: absolute;
+  font-family: var(--font-display, 'Anton', sans-serif);
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  color: rgba(255, 183, 3, 0.11);
+  text-shadow: 0 0 24px rgba(255, 183, 3, 0.15);
+  user-select: none;
+  animation: symbolDrift 9s ease-in-out infinite;
+}
+
+.float-symbol svg {
+  width: clamp(42px, 4.2vw, 60px);
+  height: auto;
+  display: block;
+}
+
+/* Left Margin Positions (Amber Tint) */
+.sym-1 { top: 18%; left: 7%;  transform: rotate(-12deg); animation-delay: 0s; }
+.sym-2 { top: 44%; left: 12%; transform: rotate(10deg);  animation-delay: -2.2s; font-size: 2.3rem; }
+.sym-3 { top: 68%; left: 6%;  transform: rotate(-8deg);  animation-delay: -4.5s; }
+.sym-4 { top: 82%; left: 13%; transform: rotate(15deg);  animation-delay: -6.8s; }
+
+/* Right Margin Positions (Burnt Orange Tint) */
+.sym-5 {
+  top: 20%;
+  right: 8%;
+  color: rgba(217, 72, 15, 0.14);
+  text-shadow: 0 0 24px rgba(217, 72, 15, 0.2);
+  transform: rotate(14deg);
+  animation-delay: -1.5s;
+}
+
+.sym-6 {
+  top: 46%;
+  right: 12%;
+  color: rgba(255, 183, 3, 0.1);
+  transform: rotate(-10deg);
+  animation-delay: -3.7s;
+  font-size: 2.2rem;
+}
+
+.sym-7 {
+  top: 70%;
+  right: 7%;
+  color: rgba(217, 72, 15, 0.14);
+  transform: rotate(8deg);
+  animation-delay: -5.9s;
+}
+
+.sym-8 {
+  top: 83%;
+  right: 13%;
+  color: rgba(255, 183, 3, 0.12);
+  transform: rotate(-14deg);
+  animation-delay: -7.4s;
+}
+
+/* Smooth Vertical Float & Subtle Tilt */
+@keyframes symbolDrift {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -16px;
+  }
+}
+
+/* Ensure main page content stays cleanly above the ambient layer */
+#landingScreen,
+.hero-background,
+.game-callout-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hide symbols on narrow mobile screens so they don't crowd the rules box */
+@media (max-width: 900px) {
+  .float-symbol,
+  .ambient-margins::before,
+  .ambient-margins::after {
+    display: none;
+  }
+}
