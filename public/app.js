@@ -611,3 +611,4 @@
   loadProfile();
   window.addEventListener('userReady', loadProfile);   // fired by auth.js once login is confirmed
 })();
+
