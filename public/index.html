@@ -15,7 +15,6 @@
   <!-- Landing page -->
   <div id="landingScreen">
     <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></h1>
-<<<<<<< Updated upstream
     <h2 style="color:white">How to Play</h2>
     <ul class="box1">
       <li>Choose one subject: Physics, Chemistry, Mathematics or Biology.</li>
@@ -29,31 +28,8 @@
       <li>After 5 questions the higher score wins. Trophies change by 4 per point of difference (maximum 30).</li>
       <li>The winner gains trophies, the loser loses the same amount, a draw changes nothing. Trophies can go below 0.</li>
     </ul>
-=======
-    <!-- auth.js swaps this LOGIN text for the username after login -->
-    <p style="text-align: right;"><a href="auth.html" id="navLoginLink" class="button2" style="text-align: center;">LOGIN</a></p>
-
-      <section id="rulesSection" class="rules-wrapper">
-      <h2 class="rules-title">How to <span style="color: #FFB703;">Play?</span></h2>
-
-      <div class="rules-row">
-        <div class="rule-box">
-          <h3>Fastest &amp; Correct Wins</h3>
-          <p>Race StudyBot across 5 questions (30s each). Outscore your rival to win trophies.</p>
-        </div>
-
-        <div class="rule-box">
-          <h3>Point System</h3>
-          <p>+3 first right · +1 second right · −3 wrong · 0 unanswered.</p>
-        </div>
-
-        <div class="rule-box">
-          <h3>How to Start</h3>
-          <p>Log in, pick a subject and Bot Mode, then select an option and hit Submit.</p>
-        </div>
       </div>
     </section>
->>>>>>> Stashed changes
   </div>
 
   <!-- Wrapped so auth.js can hide landing sections after login -->
@@ -135,7 +111,6 @@
     </section>
   </div>
 
-<<<<<<< Updated upstream
   <!-- Homepage -->
   <div id="homeScreen" class="hidden">
     <h2>Trophies: <span id="trophyCount">0</span></h2>
@@ -145,20 +120,6 @@
       <button class="subjectButton" data-subject="Chemistry">Chemistry</button>
       <button class="subjectButton" data-subject="Mathematics">Mathematics</button>
       <button class="subjectButton" data-subject="Biology">Biology</button>
-=======
-  <!-- Hamburger menu (hidden until the player presses Start while logged in) -->
-  <div id="topBar" class="menu hidden">
-    <p class="box2"><button id="menuButton" class="button">☰</button><strong class="hero-title" style="text-align:left;color:white;font-size: 50px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></strong></p>
-    <div id="menu" class="hidden" style="margin-left:-375px;margin-top:-20px;">
-      <button id="menuProfile">Profile</button>
-      <button id="menuHow">How to Play</button>
-      <button id="menuLogout">Logout</button>
-    </div>
-  </div>
-
-  <!-- Homepage (hidden until Start is pressed while logged in) -->
-  <div id="homeScreen" class="hidden">
-    <h2 id="greeting" style="color:aliceblue; text-align: left;font-size:50px">Heya, player!</h2>
     <h2 style="color: #FFD700; text-align: right; margin-right: -80px;">Trophies &#127942; : <span id="trophyCount">0</span></h2>
     <h1 style="color: aliceblue;">Choose a <span style="color: #FFB703;">subject</span></h1>
     <!-- Both class names kept so style.css (subject-grid/subject-btn) and app.js (subjectRow/subjectButton) keep working -->
@@ -167,24 +128,23 @@
       <button class="subject-btn subjectButton" data-subject="Chemistry">Chemistry</button>
       <button class="subject-btn subjectButton" data-subject="Mathematics">Mathematics</button>
       <button class="subject-btn subjectButton" data-subject="Biology">Biology</button>
->>>>>>> Stashed changes
     </div>
-    <h3>Choose a mode</h3>
-    <button id="botModeButton">Bot Mode (against StudyBot)</button>
-    <p><button id="startButton">Start Match</button></p>
+    <h3 style="color: darkgray;">Choose a mode</h3>
+    <button id="botModeButton" style="width: 200px; height: 50px;"><strong style="color: black; font-size: 15px;">Bot Mode (StudyBot)</strong></button>
+    <p><button id="startButton"><strong style="color: black;">Start Match</strong></button></p>
     <p id="homeMessage" class="error"></p>
   </div>
 
   <!-- Profile -->
   <div id="profileScreen" class="hidden">
-    <h2>Profile</h2>
-    <p>Username: <b id="pUsername"></b></p>
-    <p>Current trophies: <b id="pTrophies"></b></p>
-    <p>Total quizzes played: <b id="pPlayed"></b></p>
-    <p>Quizzes won: <b id="pWon"></b></p>
-    <p>Quizzes lost: <b id="pLost"></b></p>
-    <p>Draws: <b id="pDraws"></b></p>
-    <p>Total correctly answered questions: <b id="pCorrect"></b></p>
+    <h2 style="color: #D9480F;">Profile</h2>
+    <p style="color: #FFB703;">Username: <b id="pUsername" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Current trophies: <b id="pTrophies" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Total quizzes played: <b id="pPlayed" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Quizzes won: <b id="pWon" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Quizzes lost: <b id="pLost" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Draws: <b id="pDraws" style="color: darkgrey;"></b></p>
+    <p style="color: #FFB703;">Total correctly answered questions: <b id="pCorrect" style="color: darkgrey;"></b></p>
     <button class="backButton">Back</button>
   </div>
 
@@ -198,15 +158,18 @@
   <div id="quizScreen" class="hidden">
     <div id="scoreBoard">
       <div>
-        <b id="userName" class="blue"></b>: <span id="userScore">0</span>
+        <b style="color:white;font-size:40px;">You : </b><span id="userScore" style="color:white;font-size:40px;">0</span>
         <div id="userDots"></div>
       </div>
+      <div class="center">
+        <b id="timeLeft" style="color:white;font-size:60px">30s</b>
+      </div>
       <div class="right">
-        <b class="red">StudyBot</b>: <span id="botScore">0</span>
+        <b class="red" style="color:white;font-size:40px;">StudyBot : </b><span id="botScore" style="color:white;font-size:40px;">0</span>
         <div id="botDots"></div>
       </div>
     </div>
-    <p>Question <span id="questionNumber">1</span> of 5 - <span id="timeLeft">30</span> seconds left</p>
+    <p style="color:white;">Question <span id="questionNumber" style="color:white;">1</span> of 5</p>
     <h3 id="questionText"></h3>
     <button class="optionButton" data-option="A"></button>
     <button class="optionButton" data-option="B"></button>
@@ -219,15 +182,15 @@
   <!-- Result -->
   <div id="resultScreen" class="hidden">
     <h2 id="resultBanner"></h2>
-    <p>Winner: <b id="resultWinner"></b></p>
-    <p>Final score: <span id="resultScore"></span></p>
-    <p>Trophies this match: <b id="resultChange"></b></p>
-    <p>Total trophies: <b id="resultTrophies"></b></p>
+    <p style="color: #FFD700;">Winner: <b id="resultWinner" style="color: #e87f55;"></b></p>
+    <p style="color: #FFD700;">Final score: <span id="resultScore" style="color: #e87f55;"></span></p>
+    <p style="color: #FFD700;">Trophies this match: <b id="resultChange" style="color: #e87f55;"></b></p>
+    <p style="color: #FFD700;">Total trophies: <b id="resultTrophies" style="color: #e87f55;"></b></p>
     <button id="playAgainButton">Play New Match</button>
     <button id="backHomeButton">Back to Homepage</button>
   </div>
 
   <script src="auth.js"></script>
-  <!--<script src="app.js"></script>-->
+  <script src="app.js"></script>
 </body>
 </html>

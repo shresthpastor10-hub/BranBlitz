@@ -1,5 +1,5 @@
 /* style.css - plain and flat on purpose */
-body { background-color:#121212;font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; padding: 20px; }
+body { background-color:#121212;font-family: 'Times New Roman', sans-serif; max-width: 700px; margin: 0 auto; padding: 20px; }
 .hidden { display: none; }
 .error { color: red; }
 .blue { color: blue; }
@@ -8,20 +8,68 @@ body { background-color:#121212;font-family: Arial, sans-serif; max-width: 700px
 
 .button { padding: 8px 14px; margin: 4px; border: 1px solid #D9480F; background: #D9480F; cursor: pointer; border-radius: 8px;}
 button:hover{ background-color: #ffaa33; color:cornsilk;}
-glowtext {
-  color: #ffaa33;
-  text-shadow: 
-    0 0 5px #ff5f1f,
-    0 0 10px #ff5f1f,
-    0 0 20px #ff5f1f,
-    0 0 40px #ff4b11;
+.button2 { padding: 8px 14px; margin: 4px; border: 1px solid #D9480F; background: #FFB703; cursor: pointer; border-radius: 8px;}
+button.selected { background: #333; color: white; }
+#startBtn {
+  display: inline-block;
+  padding: 18px 70px;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background: #FFB703;
+  border: 4px solid #D9480F;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #D9480F;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
 }
 
-button.selected { background: #333; color: white; }
+#startBtn:hover {
+  background: #ffc933;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #D9480F;
+}
+
+#startBtn:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 #D9480F;
+}
+
+#navLoginLink {
+  display: inline-block;
+  padding: 10px 34px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background: #FFB703;
+  border: 3px solid #D9480F;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #D9480F;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
+}
+
+#navLoginLink:hover {
+  background: #ffc933;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #D9480F;
+}
+
+#navLoginLink:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #D9480F;
+}
+
 input { display: block; margin: 6px 0; padding: 6px; width: 260px; }
 /* landing page about */
 
-.box1 {
+.box3 {
   width: auto;
   border: 8px solid rgb(25, 7, 46);
   padding: 50px;
@@ -90,14 +138,159 @@ input { display: block; margin: 6px 0; padding: 6px; width: 260px; }
 .box1:hover{background-color: #2c56dd; color:cornsilk;
     animation: myAnimation 5s ease;
 }
+#rules,
+.box1 {
+  color: #f1f5f9;
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  border: 2px solid #FFB703;
+  animation: rulesPulse 6s ease-in-out infinite;
+}
+
+#rules li,
+.box1 li {
+  line-height: 1.65;
+  margin-bottom: 0.45rem;
+}
+
+
+@keyframes rulesPulse {
+  0%, 100% {
+    background-color: rgba(20, 33, 61, 0.85); /* Deep Navy */
+    border-color: #FFB703;                    /* Amber Yellow */
+    box-shadow: 0 0 22px rgba(255, 183, 3, 0.22);
+  }
+  50% {
+    background-color: rgba(42, 18, 12, 0.88); /* Dark Burnt Umber */
+    border-color: #D9480F;                    /* Burnt Orange */
+    box-shadow: 0 0 28px rgba(217, 72, 15, 0.35);
+  }
+}
 /* hamburger menu */
 #topBar { position: relative; }
 #menu { position: absolute; top: 40px; left: 0; background: white; border: 1px solid #333; }
 #menu button { display: block; width: 100%; margin: 0; border: none; text-align: left; }
+/* Make sure html/body prevents any horizontal scrollbar from 100vw */
+.box2 {
+  /* Full screen width edge-to-edge breakout */
+  height: 70px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
 
+  /* Burnt Orange background & matching border */
+  background-color: #D9480F;
+  border: 2px solid #FFB703;
+  /* Clean vertical alignment for the menu button inside */
+}
+
+/* Optional: Make the menu button inside stand out against the orange bar */
+.box2 {
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  box-sizing: border-box;
+
+  background-color: #121212;
+  padding: 0.85rem 2rem;
+
+  /* Centers BranBlitz across the full banner width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pins the menu button cleanly on the left without pushing BranBlitz off-center */
+.box2 #menuButton {
+  position: absolute;
+  left: 1.5rem ;
+  top: 50%;
+  transform: translateY(-50%) ;
+  background-color: #FFB703;
+  color: #000000;
+}
+/* Keeps BranBlitz centered and properly aligned vertically */
+/* optional*/
+.box2 .hero-title {
+  margin: 0 ;
+  line-height: 1 ;
+  text-align: center;
+}
+
+/* Full-width row spanning between the left and right ambient margins */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 20%;
+  margin: 1.25rem 0 2.5rem;
+  box-sizing: border-box;
+}
+
+/* Large, bold subject tiles */
+.subject-grid button,
+.subject-btn {
+  width: 100%;
+  min-height: 125px;
+  padding: 1.5rem 1rem;
+  border-radius: 18px;
+  background-color: #D9480F;
+  color: #ffffff;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  /* 2D arcade border & depth matching your site theme */
+  border: 2px solid #FFB703;
+  box-shadow: 0 6px 0 #091122, 0 12px 20px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover & Active Selection Effects */
+.subject-grid button:hover,
+.subject-btn:hover {
+  background-color: #e8551a;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 0 #091122, 0 16px 24px rgba(217, 72, 15, 0.35);
+}
+
+.subject-grid button:active,
+.subject-btn:active,
+.subject-btn.active,
+.subject-btn.selected {
+  background-color: #FFB703;
+  color: #091122;
+  border-color: #ffffff;
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #091122;
+}
+
+/* Switch to a 2x2 grid on tablets/mobile so text never gets cramped */
+@media (max-width: 900px) {
+  .subject-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .subject-grid button,
+  .subject-btn {
+    min-height: 95px;
+  }
+}
 /* subjects on one horizontal line */
-#subjectRow { display: flex; flex-wrap: wrap; }
-
+.subject-btn  { display: flex; flex-wrap: wrap; }
 /* quiz screen */
 #scoreBoard { display: flex; justify-content: space-between; }
 .dot { display: inline-block; width: 16px; height: 16px; border: 1px solid #333; border-radius: 50%; margin: 2px; background: white; }

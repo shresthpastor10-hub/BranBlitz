@@ -1,7 +1,13 @@
 // Initializing Supabase
 const SUPABASE_URL = 'https://dezledviflcsjkurtmiq.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_41xns9eV4rAt0Po73EnsQw_slVJKmDC';
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: {
+        storage: window.sessionStorage,
+        persistSession: true,
+        autoRefreshToken: true
+    }
+});
 
 // Global player identity for matchmaking & app.js
 let currentUsername = null;
