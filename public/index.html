@@ -15,6 +15,7 @@
   <!-- Landing page -->
   <div id="landingScreen">
     <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></h1>
+<<<<<<< Updated upstream
     <h2 style="color:white">How to Play</h2>
     <ul class="box1">
       <li>Choose one subject: Physics, Chemistry, Mathematics or Biology.</li>
@@ -28,6 +29,31 @@
       <li>After 5 questions the higher score wins. Trophies change by 4 per point of difference (maximum 30).</li>
       <li>The winner gains trophies, the loser loses the same amount, a draw changes nothing. Trophies can go below 0.</li>
     </ul>
+=======
+    <!-- auth.js swaps this LOGIN text for the username after login -->
+    <p style="text-align: right;"><a href="auth.html" id="navLoginLink" class="button2" style="text-align: center;">LOGIN</a></p>
+
+      <section id="rulesSection" class="rules-wrapper">
+      <h2 class="rules-title">How to <span style="color: #FFB703;">Play?</span></h2>
+
+      <div class="rules-row">
+        <div class="rule-box">
+          <h3>Fastest &amp; Correct Wins</h3>
+          <p>Race StudyBot across 5 questions (30s each). Outscore your rival to win trophies.</p>
+        </div>
+
+        <div class="rule-box">
+          <h3>Point System</h3>
+          <p>+3 first right · +1 second right · −3 wrong · 0 unanswered.</p>
+        </div>
+
+        <div class="rule-box">
+          <h3>How to Start</h3>
+          <p>Log in, pick a subject and Bot Mode, then select an option and hit Submit.</p>
+        </div>
+      </div>
+    </section>
+>>>>>>> Stashed changes
   </div>
 
   <!-- Wrapped so auth.js can hide landing sections after login -->
@@ -109,6 +135,7 @@
     </section>
   </div>
 
+<<<<<<< Updated upstream
   <!-- Homepage -->
   <div id="homeScreen" class="hidden">
     <h2>Trophies: <span id="trophyCount">0</span></h2>
@@ -118,6 +145,29 @@
       <button class="subjectButton" data-subject="Chemistry">Chemistry</button>
       <button class="subjectButton" data-subject="Mathematics">Mathematics</button>
       <button class="subjectButton" data-subject="Biology">Biology</button>
+=======
+  <!-- Hamburger menu (hidden until the player presses Start while logged in) -->
+  <div id="topBar" class="menu hidden">
+    <p class="box2"><button id="menuButton" class="button">☰</button><strong class="hero-title" style="text-align:left;color:white;font-size: 50px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></strong></p>
+    <div id="menu" class="hidden" style="margin-left:-375px;margin-top:-20px;">
+      <button id="menuProfile">Profile</button>
+      <button id="menuHow">How to Play</button>
+      <button id="menuLogout">Logout</button>
+    </div>
+  </div>
+
+  <!-- Homepage (hidden until Start is pressed while logged in) -->
+  <div id="homeScreen" class="hidden">
+    <h2 id="greeting" style="color:aliceblue; text-align: left;font-size:50px">Heya, player!</h2>
+    <h2 style="color: #FFD700; text-align: right; margin-right: -80px;">Trophies &#127942; : <span id="trophyCount">0</span></h2>
+    <h1 style="color: aliceblue;">Choose a <span style="color: #FFB703;">subject</span></h1>
+    <!-- Both class names kept so style.css (subject-grid/subject-btn) and app.js (subjectRow/subjectButton) keep working -->
+    <div id="subjectRow" class="subject-grid subjectRow">
+      <button class="subject-btn subjectButton" data-subject="Physics">Physics</button>
+      <button class="subject-btn subjectButton" data-subject="Chemistry">Chemistry</button>
+      <button class="subject-btn subjectButton" data-subject="Mathematics">Mathematics</button>
+      <button class="subject-btn subjectButton" data-subject="Biology">Biology</button>
+>>>>>>> Stashed changes
     </div>
     <h3>Choose a mode</h3>
     <button id="botModeButton">Bot Mode (against StudyBot)</button>
@@ -162,6 +212,7 @@
     <button class="optionButton" data-option="B"></button>
     <button class="optionButton" data-option="C"></button>
     <button class="optionButton" data-option="D"></button>
+    <p><button id="submitAnswerButton" disabled>Submit Answer</button></p>
     <p id="quizMessage"></p>
   </div>
 

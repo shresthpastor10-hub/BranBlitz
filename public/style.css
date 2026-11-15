@@ -32,6 +32,50 @@ input { display: block; margin: 6px 0; padding: 6px; width: 260px; }
   animation: myAnimation 3s ease-in-out infinite alternate;
   
 }
+.rules-wrapper {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+.rules-title {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.rules-row {
+  display: flex;
+  gap: 16px;
+}
+
+.rule-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 183, 3, 0.35);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.rule-box h3 {
+  color: #FFB703;
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+}
+
+.rule-box p {
+  color: #e2e8f0;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .rules-row {
+    flex-direction: column;
+  }
+}
 @keyframes myAnimation {
   30% {
     background-color: #2f013c;
