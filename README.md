@@ -46,7 +46,7 @@ A database instance (MongoDB / PostgreSQL)
 Installation
 bash
 # Clone the repository
-git clone https://github.com/your-username/iqblitz.git
+git clone https://github.com/shresthpastor10-hub/BranBlitz.git
 
 # Move into the project folder
 cd iqblitz
@@ -106,4 +106,4 @@ This project is licensed under the MIT License.
 
 Have feedback or ideas? Reach out at spastor@iitbhilai.ac.in or open an issue on GitHub.
 
-Train your brain. Heal your brain. Beat the clock. Win with IQBlitz. ⚡
+Train your brain. Heal your brain. Beat the clock. Win with BranBlitz. ⚡
