@@ -1,8 +1,8 @@
-⚡ IQBlitz
+⚡ BranBlitz
 
 Compete. Practise. Sharpen your mind.
 
-IQBlitz is an online brain-training platform where you can challenge real players in live quiz battles or train solo against a bot. Questions span Physics, Maths, Biology, Chemistry and General Knowledge (GK), helping you build speed, focus, memory and problem-solving skills.
+IQBlitz is an online brain-training platform where you can challenge real players in live quiz battles or train solo against a bot. Questions span Physics, Maths, Biology, Chemistry, helping you build speed, focus, memory and problem-solving skills.
 
 🎯 Purpose
 
@@ -13,7 +13,7 @@ Strengthen recall and reasoning
 Build speed and accuracy under pressure
 Stay curious and consistently challenge your brain
 
-Note: IQBlitz is an educational and recreational platform. It is not a medical tool and does not diagnose, treat or cure any health condition. If you experience persistent brain fog or cognitive concerns, please consult a healthcare professional.
+Note: BranBlitz is an educational and recreational platform. It is not a medical tool and does not diagnose, treat or cure any health condition. If you experience persistent brain fog or cognitive concerns, please consult a healthcare professional.
 
 ✨ Features
 🆚 Multiplayer Battles – Compete against online players in real-time quiz duels.
@@ -35,9 +35,8 @@ Update this section to match your project.
 
 Frontend: HTML, CSS, JavaScript / React
 Backend: Node.js, Express
-Real-time: Socket.IO / WebSockets
-Database: MongoDB / PostgreSQL
-Auth: JWT / OAuth
+Database: SupaBBase(PostgreSQL)
+Auth: Js
 🚀 Getting Started
 Prerequisites
 Node.js (v18 or later)
