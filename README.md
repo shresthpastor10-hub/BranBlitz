@@ -98,12 +98,9 @@ You can also contribute by adding new questions to the question bank. Please mak
  ->Mobile app
  ->Weekly tournaments and rewards
  ->Multi-language support
-📄 License
-
-This project is licensed under the MIT License.
 
 📬 Contact
 
-Have feedback or ideas? Reach out at spastor@iitbhilai.ac.in or open an issue on GitHub.
+Have feedback or ideas? Reach out at spastor@iitbhilai.ac.in and draj@iitbhilai.ac.in or open an issue on GitHub.
 
 Train your brain. Heal your brain. Beat the clock. Win with BranBlitz. ⚡
