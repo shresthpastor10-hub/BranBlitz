@@ -94,21 +94,45 @@ input { display: block; margin: 6px 0; padding: 6px; width: 260px; }
 .box1:hover{background-color: #2c56dd; color:cornsilk;
     animation: myAnimation 5s ease;
 }
-#rules,
-.box1 {
-  color: #f1f5f9;
-  border-radius: 16px;
-  padding: 1.75rem 2rem;
-  border: 2px solid #FFB703;
-  animation: rulesPulse 6s ease-in-out infinite;
+.rules-container {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
 
-#rules li,
-.box1 li {
-  line-height: 1.65;
-  margin-bottom: 0.45rem;
+.rules-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
 }
 
+.rule-box {
+  flex: 1;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.rule-box h3 {
+  color: #FFB703;
+  margin: 0 0 8px 0;
+  font-size: 1.15rem;
+}
+
+.rule-box p {
+  color: #e5e5e5;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .rules-row {
+    flex-direction: column;
+  }
+}
 
 @keyframes rulesPulse {
   0%, 100% {

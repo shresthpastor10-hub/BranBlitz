@@ -43,21 +43,29 @@
     <h1 class="hero-title" style="text-align:center;color:white;font-size: 80px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></h1>
     <!-- auth.js swaps this LOGIN text for the username after login -->
     <p style="text-align: right;"><a href="auth.html" id="navLoginLink" class="button2" style="text-align: center;">LOGIN</a></p>
-    <h2 style="color:white; text-align: center;">How to <span style="color: #FFB703;"> Play?</span></h2>
-    <ul class="box1">
-      <li>Choose one subject: Physics, Chemistry, Mathematics or Biology.</li>
-      <li>Choose Bot Mode and play against StudyBot.</li>
-      <li>A match has 5 questions. Each question has a 30 second timer.</li>
-      <li>You and StudyBot get one attempt per question.</li>
-      <li>Correct answer: +3 for you, -3 for your opponent (unless they already lost 3 on this question).</li>
-      <li>Wrong answer: -3 for you and you are frozen. Your opponent can still answer.</li>
-      <li>Both wrong: both get -3. Nobody answers in 30 seconds: both get 0.</li>
-      <li>One wrong and one silent: -3 and 0.</li>
-      <li>After 5 questions the higher score wins. Trophies change by 4 per point of difference (maximum 30).</li>
-      <li>The winner gains trophies, the loser loses the same amount, a draw changes nothing. Trophies can go below 0.</li>
-    </ul>
-  </div>
+    <section id="rulesSection" class="rules-wrapper">
+     <div id="rulesSection" class="rules-container">
+      <h2 style="color: white; text-align: center;">How to <span style="color: #FFB703;">Play?</span></h2>
 
+      <div class="rules-row">
+        <div class="rule-box">
+          <h3>Goal</h3>
+          <p>Beat StudyBot across 5 questions (30s each) to earn trophies.</p>
+        </div>
+
+        <div class="rule-box">
+          <h3>Points</h3>
+          <p>+3 first right, +1 second right, -3 wrong, 0 unanswered.</p>
+        </div>
+
+        <div class="rule-box">
+          <h3>Start</h3>
+          <p>Log in, pick a subject &amp; Bot Mode, select an answer, and hit Submit.</p>
+        </div>
+      </div>
+    </div>
+    </section>
+  </div>
   <!-- Wrapped so auth.js can hide the rest of the landing page when the game starts -->
   <div id="landingExtras">
     <p style="text-align:center"><a href="auth.html" id="startBtn">Start</a></p>
@@ -148,7 +156,7 @@
   <!-- Hamburger menu (hidden until the player presses Start while logged in) -->
   <div id="topBar" class="menu hidden">
     <p class="box2"><button id="menuButton" class="button">☰</button><strong class="hero-title" style="text-align:center;color:white;font-size: 50px;">Bran<span class="line-accent" style="color:#D9480F;">Blitz</span></strong></p>
-    <div id="menu" class="hidden">
+    <div id="menu" class="hidden" style="margin-left:-350px;margin-top:20px;">
       <button id="menuProfile">Profile</button>
       <button id="menuHow">How to Play</button>
       <button id="menuLogout">Logout</button>
@@ -193,6 +201,7 @@
   </div>
 
   <!-- Quiz -->
+ <!-- Quiz -->
   <div id="quizScreen" class="hidden">
     <div id="scoreBoard">
       <div>
@@ -213,6 +222,7 @@
     <button class="optionButton" data-option="B"></button>
     <button class="optionButton" data-option="C"></button>
     <button class="optionButton" data-option="D"></button>
+    <p><button id="submitAnswerButton" disabled>Submit Answer</button></p>
     <p id="quizMessage"></p>
   </div>
 

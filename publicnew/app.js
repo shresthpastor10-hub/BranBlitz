@@ -1,4 +1,3 @@
-
 // BranBlitz - game logic (app.js)
 // Loads AFTER auth.js, so it can use: supabaseClient
 
@@ -6,8 +5,6 @@
   'use strict';
 
   // SETTINGS
-
-
   const CONFIG = {
     questionsPerMatch: 5,
     secondsPerQuestion: 30,
@@ -16,19 +13,17 @@
     pointsWrong: -3,              // -3 for a wrong answer
     trophiesPerPoint: 4,
     maxTrophyChange: 30,
-    revealDelayMs: 2500,          // pause after each question
+    revealDelayMs: 1500,          // pause after each question
     bot: {
-      accuracy: 0.6,              // chance StudyBot answers correctly
+      accuracy: 0.7,              // chance StudyBot answers correctly
       minDelaySec: 5,             // StudyBot answers between these times
       maxDelaySec: 20
     },
-    //Question source
+    // ---- Question source ----
     rpcName: 'get_random_questions'
   };
 
-
-  // 2. SMALL HELPERS
-
+  //SMALL HELPERS
   const $ = (id) => document.getElementById(id);
   const LETTERS = ['A', 'B', 'C', 'D'];
   const SCREENS = ['homeScreen', 'profileScreen', 'howScreen', 'quizScreen', 'resultScreen'];
@@ -51,7 +46,7 @@
     return min + Math.random() * (max - min);
   }
 
-  // Optional: if you add KaTeX auto-render to index.html, formulas get typeset
+  // for infuture if katex is needed
   function typeset(el) {
     if (el && typeof window.renderMathInElement === 'function') {
       try { window.renderMathInElement(el); } catch (e) { /* ignore */ }
@@ -69,7 +64,8 @@
     setText('homeMessage', msg || '');
   }
 
-  // PLAYER + PROFILE
+
+  // 3. PLAYER + PROFILE (Supabase table +localStorage fallback)
 
   const DEFAULT_PROFILE = { trophies: 0, played: 0, won: 0, lost: 0, draws: 0, correct: 0 };
   let player = { id: null, name: 'Player' };
@@ -154,8 +150,10 @@
     setText('pCorrect', profile.correct);
   }
 
-  //QUESTIONS (Supabase only - offline bank removed)
- 
+  // 4. QUESTIONS
+  //    Every question is normalised as:
+  //    { text, options: [4 strings], correct: 0..3, explanation }
+
   function shuffleOptions(q) {
     const order = shuffle([0, 1, 2, 3]);
     return {
@@ -180,7 +178,7 @@
   async function fetchFromSupabase(subject, count) {
     let rows = null;
 
-    // 1st choice: the get_random_questions() SQL function
+    // 1st choice: the get_random_questions() SQL function (fast and truly random)
     const rpc = await supabaseClient.rpc(CONFIG.rpcName, { p_subject: subject, p_count: count });
     if (!rpc.error) {
       rows = rpc.data;
@@ -207,14 +205,16 @@
 
     return validQuestions;
   }
+
+
   // MATCH ENGINE
- 
+
   let selectedSubject = null;
   let botModeSelected = false;
   let loadingMatch = false;
   let match = null;
 
- function newQuestionState() {
+  function newQuestionState() {
     return {
       selectedOption: null,                     // 'A' | 'B' | 'C' | 'D' | null (before submit)
       attempted: { user: false, bot: false },
@@ -423,7 +423,7 @@
     match.score[who] += s.points[who];
     renderScores();
 
-    // End the question only when BOTH players have answered (or timer hits 0)
+    // End the question only when both players have answered (or timer hits 0)
     if (s.attempted[opp]) {
       endQuestion();
     } else {
@@ -448,6 +448,25 @@
       : 'StudyBot: 0 (unanswered)';
 
     return uStr + ' | ' + bStr + '.';
+  }
+
+  function summaryMessage() {
+    const u = match.q.outcome.user;
+    const b = match.q.outcome.bot;
+    if (u === 'correct') {
+      return b === 'wrong'
+        ? 'You got it right! +3 for you (StudyBot already lost 3).'
+        : 'You got it right! +3 for you, -3 for StudyBot.';
+    }
+    if (b === 'correct') {
+      return u === 'wrong'
+        ? 'StudyBot got it right: +3 for StudyBot (you already lost 3).'
+        : 'StudyBot got it right! +3 for StudyBot, -3 for you.';
+    }
+    if (u === 'wrong' && b === 'wrong') return 'Both answered wrong: -3 each.';
+    if (u === 'wrong') return 'Wrong answer: -3 for you. StudyBot stayed silent.';
+    if (b === 'wrong') return 'StudyBot answered wrong: -3. You stayed silent.';
+    return "Time's up! Nobody submitted an answer: 0 for both.";
   }
 
   function endQuestion() {
@@ -501,7 +520,7 @@
       banner = 'You win!!';
       winner = player.name;
       delta = change;
-      color = '#2ecc71';     
+      color = '#2ecc71';    
       fontSize = '64px';    
       profile.won++;
     } else if (u < b) {
@@ -544,26 +563,26 @@
 
 
   // UI WIRING
-
   function highlight(btn, on) {
     btn.classList.toggle('selected', on);
     btn.style.outline = on ? '3px solid #FFB703' : '';
   }
 
-  function fillHowToPlay() {
-    const box = $('howBox');
-    const rules = document.querySelector('#landingScreen ul');
-    if (!box || !rules) return;
-    box.textContent = '';
-    const title = document.createElement('h2');
-    title.textContent = 'How to Play';
-    title.style.color = '#FFB703';
-    box.appendChild(title);
-    box.appendChild(rules.cloneNode(true));
+function populateHowToPlay() {
+    const container = $('howBox');
+    const rulesRow = document.querySelector('#rulesSection .rules-row');
+    if (!container || !rulesRow) return;
+
+    container.innerHTML = '';
+    const heading = document.createElement('h2');
+    heading.textContent = 'How to Play';
+    heading.style.color = '#FFB703';
+    heading.style.textAlign = 'center';
+    container.append(heading, rulesRow.cloneNode(true));
   }
 
   function wireUI() {
-    // Subject buttons 
+    // Subject buttons
     const subjectButtons = Array.from(document.querySelectorAll('.subjectButton, .subject-btn'));
     subjectButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -595,20 +614,33 @@
     });
     $('submitAnswerButton')?.addEventListener('click', submitUserAnswer);
 
-    // Hamburger menu (Logout is handled in auth.js)
+    // Hamburger menu
     $('menuButton')?.addEventListener('click', () => $('menu')?.classList.toggle('hidden'));
     $('menuProfile')?.addEventListener('click', () => { renderProfile(); showScreen('profileScreen'); });
-    $('menuHow')?.addEventListener('click', () => { fillHowToPlay(); showScreen('howScreen'); });
+    $('menuHow')?.addEventListener('click', () => {
+      // Hide all in-game screens and the top bar
+      SCREENS.forEach((s) => $(s)?.classList.add('hidden'));
+      $('topBar')?.classList.add('hidden');
+      $('menu')?.classList.add('hidden');
+
+      // Show the landing page again
+      $('landingScreen')?.classList.remove('hidden');
+      $('landingExtras')?.classList.remove('hidden');
+
+      // Scroll smoothly to the very top of the landing page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // Back buttons on Profile / How to Play
     document.querySelectorAll('.backButton').forEach((btn) => {
       btn.addEventListener('click', () => { renderTrophies(); showScreen('homeScreen'); });
     });
   }
-  // 7. START
 
+
+  // START
+ 
   wireUI();
   loadProfile();
   window.addEventListener('userReady', loadProfile);   // fired by auth.js once login is confirmed
 })();
-
